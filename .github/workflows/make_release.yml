@@ -46,3 +46,4 @@ jobs:
           tag_name: 'nanolight-${{ steps.version_to_release.outputs.version }}'
           name: 'Nanolight ${{ steps.version_to_release.outputs.version }}'
           token: ${{ secrets.PERSONAL_TOKEN }}
+          target_commitish: 'nanolight'
