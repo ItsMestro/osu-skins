@@ -27,7 +27,7 @@ jobs:
         uses: thedoctor0/zip-release@0.7.5
         with:
           type: 'zip'
-          filename: 'Nanolight (Lazer Edition).osk'
+          filename: 'Nanolight-Lazer.Edition.osk'
           exclusions: '/*.ai'
           directory: 'Nanolight (Lazer Edition)'
 
@@ -41,7 +41,7 @@ jobs:
       - name: Make Release Draft
         uses: softprops/action-gh-release@v1
         with:
-          files: "Nanolight (Lazer Edition)/Nanolight (Lazer Edition).osk"
+          files: "Nanolight (Lazer Edition)/Nanolight-Lazer.Edition.osk"
           draft: true
           tag_name: 'nanolight-${{ steps.version_to_release.outputs.version }}'
           name: 'Nanolight ${{ steps.version_to_release.outputs.version }}'
