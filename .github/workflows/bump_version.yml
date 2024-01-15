@@ -1,0 +1,55 @@
+name: Bump skin version
+on:
+  workflow_dispatch:
+    inputs:
+      new_version:
+        type: choice
+        description: New version
+        required: true
+        default: 'minor'
+        options:
+          - major
+          - minor
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  version_bump:
+    runs-on: ubuntu-latest
+    outputs:
+      commit_hash: ${{ steps.commit-and-push.outputs.commit_hash }}
+    steps:
+      # Checkout repository and install Python
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      # Update every instance of version variable
+      - name: Update version number from input
+        id: bump_version
+        run: |
+          python .github/workflows/scripts/bump_version.py
+        env:
+          PYTHONPATH: ${{ github.workspace }}:${{ env.PYTHONPATH }}
+          NEW_VERSION: ${{ github.event.inputs.new_version }}
+
+      - name: Import GPG
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Push commit
+        id: commit-and-push
+        run: |
+          git add 'Nanolight (Lazer Edition)/skin.ini'
+          git add 'Nanolight (Lazer Edition)/skininfo.json'
+          git commit -S -m 'Version bump to ${{ steps.bump_version.outputs.new_version }}'
+          git push
+          echo "commit_hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
