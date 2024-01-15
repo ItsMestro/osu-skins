@@ -48,6 +48,7 @@ My own personal skin that I use for almost all gameplay. Still very much WIP wit
   - [ ] Make tool to auto convert skin for any UI scale.
 - [ ] Support lower aspect ratios.
 - [ ] Improve UI uniformity as skin editor gets more feature rich.
+- [ ] Add support for more (all) keymodes in mania.
 
 ---
 
