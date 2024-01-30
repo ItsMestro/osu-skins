@@ -29,7 +29,7 @@
 
 [![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/ItsMestro/osu-skins/Nanolight-Lazer.Edition.osk)](https://github.com/ItsMestro/osu-skins/releases/latest)
 
-> Designed on lazer version: [2023.1231.0](https://github.com/ppy/osu/releases/tag/2023.1231.0)
+> Designed on lazer version: [2024.130.2](https://github.com/ppy/osu/releases/tag/2024.130.2)
 
 My own personal skin that I use for almost all gameplay. Still very much WIP with support for taiko and catch to come, hopefully.
 
